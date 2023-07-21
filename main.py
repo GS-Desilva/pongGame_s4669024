@@ -6,7 +6,19 @@ from kivy.clock import Clock
 from random import randint
 
 class PongPaddle(Widget):
+    #keeps the score of each player
     score=NumericProperty(0)
+
+    #defininf method bounce_ball with a single parameter constructor
+    #method checks if the ball collides with the paddle widget
+    #if the ball collides, method calculates the ball's new velocity based on its current velocity and position relative to the paddle
+    def bounce_ball(self, ball):
+        if self.collide_widget(ball):
+           vx,vy=ball.velocity
+            offset=(ball.center_y-self.center_y)/(self.height/2)
+            bounced=Vector(-1*vx,vy)
+            vel=bounced*1.1
+            ball.velocity=vel.x,vel.y+offset
 
 class PongBall(Widget):
     velocity_x=NumericProperty(0)
