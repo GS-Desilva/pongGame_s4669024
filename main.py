@@ -4,8 +4,8 @@ from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from kivy.clock import Clock
 class PongBall(Widget):
-    velocity_x=NumericProperty(0)
-    velocity_y=NumericProperty(0)
+    velocity_x=NumericProperty(1)
+    velocity_y=NumericProperty(1)
     velocity= ReferenceListProperty(velocity_x, velocity_y)
 
     def move(self):
