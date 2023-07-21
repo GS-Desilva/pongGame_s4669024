@@ -3,9 +3,11 @@ from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProper
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from kivy.clock import Clock
+from random import randint
+
 class PongBall(Widget):
-    velocity_x=NumericProperty(1)
-    velocity_y=NumericProperty(1)
+    velocity_x=NumericProperty(0)
+    velocity_y=NumericProperty(0)
     velocity= ReferenceListProperty(velocity_x, velocity_y)
 
     def move(self):
@@ -13,6 +15,13 @@ class PongBall(Widget):
 
 class PongGame(Widget):
     ball=ObjectProperty(None)
+
+    #defining method serve_ball to set a random x and y velocity for the ball
+    #and reset the position of the ball(when a user scores a point)
+    def serve_ball(self):
+        self.ball.center=self.center
+        self.ball.velocity=Vector(4,0).rotate(randint(0,360))
+
     def update(self, dt):
         self.ball.move()
 
@@ -27,7 +36,10 @@ class PongGame(Widget):
 class PongApp(App):
     def build(self):
         game=PongGame()
+        #calling method serve_ball()
+        game.serve_ball()
         Clock.schedule_interval(game.update, 1.0/60.0)
+
         return game
 
 if __name__=='__main__':
