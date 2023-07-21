@@ -3,7 +3,6 @@ from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProper
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from kivy.clock import Clock
-from random import randint
 
 class PongPaddle(Widget):
     #keeps the score of each player
@@ -29,13 +28,18 @@ class PongBall(Widget):
         self.pos=Vector(*self.velocity)+self.pos
 
 class PongGame(Widget):
+    #initializing the observable properties to none
+    #ObjectProperty class automatically observes changes and notifies and responds the program accordingly
     ball=ObjectProperty(None)
+    player1=ObjectProperty(None)
+    player2=ObjectProperty(None)
 
-    #defining method serve_ball to set a random x and y velocity for the ball
-    #and reset the position of the ball(when a user scores a point)
-    def serve_ball(self):
+    #serve_ball method sets the initial position of the ball to the center
+    #the default value of the optional argument vel is given as 4.0
+    #the balls velocity is set to the value of the vel argument
+    def serve_ball(self, vel=(4.0)):
         self.ball.center=self.center
-        self.ball.velocity=Vector(4,0).rotate(randint(0,360))
+        self.ball.velocity= vel
 
     def update(self, dt):
         self.ball.move()
