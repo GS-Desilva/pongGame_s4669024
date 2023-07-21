@@ -11,7 +11,8 @@ class PongBall(Widget):
         self.pos=Vector(*self.velocity)+self.pos
 
 class PongGame(Widget):
-    pass
+    def update(self, dt):
+        pass
 
 class PongApp(App):
     def build(self):
