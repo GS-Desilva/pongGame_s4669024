@@ -6,6 +6,7 @@
         Ellipse:
             pos:self.pos
             size:self.size
+            source:'ballImg.jpg'
 
 <PongPaddle>:
     size:25,200
@@ -22,7 +23,12 @@
     canvas:
         Rectangle:
             pos: self.center_x-5,0
-            size:10, self.height
+            size: 10, self.height
+    canvas.before:
+        Rectangle:
+            pos:self.pos
+            size:self.size
+            source:'bgImg.jpg'
 
     Label:
         font_size: 50
