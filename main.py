@@ -5,6 +5,9 @@ from kivy.vector import Vector
 from kivy.clock import Clock
 from random import randint
 
+class PongPaddle(Widget):
+    score=NumericProperty(0)
+
 class PongBall(Widget):
     velocity_x=NumericProperty(0)
     velocity_y=NumericProperty(0)
