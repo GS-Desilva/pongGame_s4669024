@@ -8,9 +8,9 @@ class PongPaddle(Widget):
     # keeps the score of each player
     score = NumericProperty(0)
 
-    # defining method bounce_ball with a single parameter constructor
-    # method checks if the ball collides with the paddle widget
-    # if the ball collides, method calculates the ball's new velocity based on its current velocity and position relative to the paddle
+    # defining method bounce_ball with a single parameter constructor method checks if the ball collides with the
+    # paddle widget. If the ball collides with the paddle, the method calculates the balls new velocity based on its
+    # current velocity and position relative to the paddle.
     def bounce_ball(self, ball):
         if self.collide_widget(ball):
             vx, vy = ball.velocity
@@ -23,6 +23,8 @@ class PongBall(Widget):
     velocity_y = NumericProperty(0)
     velocity = ReferenceListProperty(velocity_x, velocity_y)
 
+    # defining the method move
+    # this method updates the position of the ball based on the current velocity of the ball
     def move(self):
         self.pos = Vector(*self.velocity)+self.pos
 class PongGame(Widget):
@@ -39,6 +41,7 @@ class PongGame(Widget):
         self.ball.center = self.center
         self.ball.velocity = vel
 
+    #
     def update(self, dt):
         self.ball.move()
 
@@ -58,12 +61,15 @@ class PongGame(Widget):
             self.player1.score += 1
             self.serve_ball(vel=(-4, 0))
 
+    #
     def on_touch_move(self, touch):
         if touch.x < self.width/3:
             self.player1.center_y = touch.y
         if touch.x > self.width-self.width/3:
             self.player2.center_y = touch.y
+
 class PongApp(App):
+    #
     def build(self):
         game = PongGame()
         # calling method serve_ball()
